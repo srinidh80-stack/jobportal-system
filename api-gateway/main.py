@@ -18,7 +18,10 @@ SPRING_BOOT_URL = "http://localhost:8081"
 def forward_json(response: Response, backend_response):
     response.status_code = backend_response.status_code
     if backend_response.content:
-        return backend_response.json()
+        try:
+            return backend_response.json()
+        except Exception:
+            return {}
     return {}
 
 
@@ -74,6 +77,15 @@ def apply_job(data: dict, request: Request, response: Response):
 def get_user_applications(user_id: int, request: Request, response: Response):
     backend_response = requests.get(
         f"{SPRING_BOOT_URL}/applications/user/{user_id}",
+        headers=auth_headers(request),
+    )
+    return forward_json(response, backend_response)
+
+
+@app.delete("/applications/{application_id}")
+def delete_application(application_id: int, request: Request, response: Response):
+    backend_response = requests.delete(
+        f"{SPRING_BOOT_URL}/applications/{application_id}",
         headers=auth_headers(request),
     )
     return forward_json(response, backend_response)

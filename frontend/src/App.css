@@ -1,71 +1,14 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #141e30, #243b55);
-}
-
-.container {
+/* App specific overrides */
+.page-container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-  padding: 40px 20px;
 }
 
-.page-header {
-  text-align: center;
-  color: white;
-  max-width: 720px;
-}
-
-.page-header h1 {
-  margin: 0;
-  font-size: clamp(2rem, 2.8vw, 3.2rem);
-  line-height: 1.05;
-}
-
-.page-header strong {
-  color: #22d3ee;
-  font-weight: 700;
-}
-
-.card {
-  width: 320px;
-  padding: 30px;
-  border-radius: 20px;
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-  color: white;
-}
-
-.card h1 {
-  text-align: center;
-}
-
-.input-box {
+.main-content {
+  flex: 1;
+  padding: 2rem 1rem;
+  max-width: 1200px;
   width: 100%;
-  padding: 12px;
-  margin-top: 12px;
-  border: none;
-  border-radius: 10px;
-  outline: none;
-}
-
-.btn {
-  width: 100%;
-  padding: 12px;
-  margin-top: 20px;
-  border: none;
-  border-radius: 10px;
-  background: #00c6ff;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background: #0094cc;
+  margin: 0 auto;
 }
