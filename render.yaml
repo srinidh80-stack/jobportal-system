@@ -39,10 +39,7 @@ services:
     staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
-        fromService:
-          type: web
-          name: jobportal-backend
-          property: host
+        sync: false
 
 databases:
   - name: jobportal-db
