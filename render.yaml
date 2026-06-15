@@ -1,0 +1,51 @@
+services:
+  # 1. Spring Boot Backend Web Service
+  - type: web
+    name: jobportal-backend
+    runtime: docker
+    dockerfilePath: backend/Dockerfile
+    dockerContext: backend
+    plan: free
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: jobportal-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: jobportal-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: jobportal-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: jobportal-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: jobportal-db
+          property: password
+      - key: PORT
+        value: 8081
+
+  # 2. React Frontend Static Site
+  - type: web
+    name: jobportal-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    publishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: jobportal-backend
+          property: host
+
+databases:
+  - name: jobportal-db
+    databaseName: jobportal
+    user: postgres
+    plan: free
