@@ -46,6 +46,4 @@ services:
 
 databases:
   - name: jobportal-db
-    databaseName: jobportal
-    user: postgres
     plan: free
